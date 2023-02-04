@@ -1,4 +1,18 @@
 {
+  "name": "speedtest",
+  "version": "0.0.1",
+  "description": "Speedtest",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeuFore/speedtest.git"
+  },
+  "author": "JeuFore",
+  "license": "ISC",
   "dependencies": {
     "@influxdata/influxdb-client": "^1.33.0",
     "@koa/router": "^12.0.0",
@@ -16,5 +30,24 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2"
-  }
+  },
+  "keywords": [
+    "speedtest",
+    "speedtest-cli",
+    "speedtest-cron",
+    "speedtest-db",
+    "speedtest-influxdb",
+    "speedtest-koa",
+    "speedtest-koa-api",
+    "speedtest-koa-api-db",
+    "speedtest-koa-api-influxdb",
+    "speedtest-koa-api-postgres",
+    "speedtest-koa-api-sqlite",
+    "speedtest-koa-api-sqlite3",
+    "speedtest-koa-api-sqlite3-orm"
+  ],
+  "bugs": {
+    "url": "https://github.com/JeuFore/speedtest/issues"
+  },
+  "homepage": "https://github.com/JeuFore/speedtest#readme"
 }
