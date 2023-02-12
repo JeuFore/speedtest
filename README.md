@@ -51,4 +51,6 @@ npm start
 | INFLUXDB_ORG          | "admin_org"                                   | InfluxDb org                              |
 | INFLUXDB_BUCKET       | "speedtest_bucket"                            | InfluxDb bucket                           |
 | TOKEN                 | "dpizdkelzjfnkjJLKEF"                         | Token to use the API # optional           |
+| SERVER_IDS            | "1,2"                                         | Specify server ids # optional             |
+| EXCLUDE_SERVER_IDS    | "3,4"                                         | Excluded server ids # optional            |
 <br/>
