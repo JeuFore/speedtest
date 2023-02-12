@@ -4,8 +4,9 @@ require('dotenv').config()
 const Koa = require('koa');
 const app = new Koa();
 const router = require('@koa/router')();
+const bodyParser = require('koa-bodyparser');
 
-const { acceptEulaSpeedtest, startSpeedtest, EULA_IS_ACCEPTED } = require('./utils/speedtest');
+const { acceptEulaSpeedtest, startSpeedtest, EULA_IS_ACCEPTED, getRandomServerId } = require('./utils/speedtest');
 
 const Database = require('./database');
 const database = new Database({
@@ -37,7 +38,7 @@ router.get('/healthz', async (ctx, next) => {
 });
 
 router.post('/speedtest/start', authMiddleware, async (ctx, next) => {
-    const { serverIds } = ctx.request.body || {};
+    const { serverIds } = ctx.request.body || [];
     const speedtest = await startSpeedtest(serverIds);
     influxdb.insertSpeedtest(speedtest);
     ctx.body = await database.insertSpeedtest(speedtest);
@@ -94,6 +95,8 @@ app.use(async (ctx, next) => {
 });
 
 app.use(logger())
+
+app.use(bodyParser());
 
 app
     .use(router.routes())
