@@ -6,7 +6,7 @@
 
 Using docker compose:
 
-```yaml
+```yamlef
 version: "3"
 services:
   speedtest:
