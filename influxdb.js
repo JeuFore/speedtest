@@ -1,4 +1,4 @@
-const { InfluxDB, Point } = require('@influxdata/influxdb-client')
+const { InfluxDB, Point } = require('@influxdata/influxdb-client');
 
 const { convertBandwidth } = require('./utils');
 
