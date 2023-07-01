@@ -19,7 +19,6 @@ services:
 or docker run
 ```bash
 docker run -d \
-    --privileged \
     --name control-node \
     -v ./database:/usr/src/app/database
     ghcr.io/jeufore/control-node:latest
