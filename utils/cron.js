@@ -4,7 +4,7 @@ const CronJob = require('cron').CronJob;
 
 const { startSpeedtest } = require('./speedtest');
 
-module.exports = (database) => {
+module.exports = (database, influxdb) => {
     if (!parseInt(process.env.JOB)) {
         console.info("CRON: Disabled");
         return;
