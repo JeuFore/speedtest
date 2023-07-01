@@ -16,7 +16,7 @@ module.exports = (database, influxdb) => {
             try {
                 const speedtest = await startSpeedtest();
                 await database.insertSpeedtest(speedtest);
-                await influxdb.insertSpeedtest(JSON.parse(speedtest));
+                await influxdb.insertSpeedtest(speedtest);
                 console.log("CRON: Speedtest done");
             }
             catch (e) {
