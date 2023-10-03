@@ -19,7 +19,7 @@
     "@mikro-orm/core": "^5.7.5",
     "@mikro-orm/sqlite": "^5.7.12",
     "cron": "^2.4.4",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.3.1",
     "koa": "^2.14.1",
     "koa-bodyparser": "^4.4.1",
     "koa-logger": "^3.2.1",
