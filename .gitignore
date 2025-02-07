@@ -3,5 +3,5 @@ npm-debug.log
 docker-compose.yml
 *.db
 .env
-database/*.sqlite
-speedtest.json
+dist
+*.sqlite3

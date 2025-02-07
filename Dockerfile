@@ -1,17 +1,22 @@
-FROM node:16
+FROM node:22-alpine AS builder
 
 WORKDIR /usr/src/app
 
-RUN apt install curl bash
-
-RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
-
-RUN apt install speedtest
+COPY . .
 
 COPY package*.json ./
 
-RUN npm install
+RUN yarn install
 
-COPY . .
+RUN yarn build
+
+
+FROM node:22-alpine
+
+WORKDIR /app
+
+COPY --from=builder /usr/src/app/dist /app
+
+RUN apk add --no-cache iperf3
 
 CMD [ "node", "index.js" ]
