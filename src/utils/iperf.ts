@@ -31,7 +31,12 @@ export default class Speedtest {
       this.logger.debug(`Running command: ${command}`);
 
       const response = await new Promise<IperfResponse>((resolve, reject) => {
+        const timeout = setTimeout(() => {
+          reject("Speedtest timed out");
+        }, 10000);
+
         exec(command, (error, stdout, stderr) => {
+          clearTimeout(timeout);
           try {
             let errorMessage = "";
             if (error) errorMessage = JSON.parse(stdout)?.error;

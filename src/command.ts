@@ -4,7 +4,6 @@ import Speedtest from "./utils/iperf";
 import { Host } from "./models/host";
 import { Bandwidth } from "./models/bandwidth";
 import { delay } from "./utils";
-import Database from "./utils/database";
 
 const logger = tracer.console({
   format:
@@ -17,7 +16,6 @@ const logger = tracer.console({
   level: process.env.LOG_LEVEL || "info",
 });
 
-const datatase = new Database(logger);
 const speedtest = new Speedtest(logger);
 
 async function test(reverse?: boolean): Promise<void> {
@@ -54,15 +52,25 @@ async function test(reverse?: boolean): Promise<void> {
   });
 }
 
-(async () => {
-  try {
-    await test();
-    await delay(10000);
-    await test(true);
+let uploadIsSuccess = false;
+async function main(): Promise<void> {
+  if (!uploadIsSuccess) {
+    try {
+      await test();
+      uploadIsSuccess = true;
+    } catch (error) {
+      logger.error("Error running upload test", error);
+      main();
+    }
 
-    process.exit(0);
-  } catch (error) {
-    logger.error("Error running speedtest", error);
-    process.exit(1);
+    await delay(10000);
   }
-})();
+
+  try {
+    await test(true);
+  } catch (error) {
+    logger.error("Error running download test", error);
+  }
+}
+
+main();
