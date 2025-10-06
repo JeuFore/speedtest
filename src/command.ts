@@ -4,6 +4,7 @@ import Speedtest from "./utils/iperf";
 import { Host } from "./models/host";
 import { Bandwidth } from "./models/bandwidth";
 import { delay } from "./utils";
+import Database from "./utils/database";
 
 const logger = tracer.console({
   format:
@@ -16,6 +17,7 @@ const logger = tracer.console({
   level: process.env.LOG_LEVEL || "info",
 });
 
+new Database(logger);
 const speedtest = new Speedtest(logger);
 
 async function test(reverse?: boolean): Promise<void> {
