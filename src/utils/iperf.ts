@@ -24,7 +24,7 @@ export default class Speedtest {
       const port =
         ports.length === 1
           ? ports[0]
-          : ports[Math.floor(Math.random() * (ports.length + 1))];
+          : ports[Math.floor(Math.random() * ports.length)];
       let command = `iperf3 -c ${url} -p ${port} -J -P 10`;
       if (reverse) command += " -R";
 
@@ -33,7 +33,7 @@ export default class Speedtest {
       const response = await new Promise<IperfResponse>((resolve, reject) => {
         const timeout = setTimeout(() => {
           reject("Speedtest timed out");
-        }, 10000);
+        }, 60 * 1000); // 1 minute timeout
 
         exec(command, (error, stdout, stderr) => {
           clearTimeout(timeout);
